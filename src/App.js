@@ -1,11 +1,16 @@
-import React, {useEffect} from 'react';
-import StudentList from './Student/StudentList'
+import React, {useEffect} from 'react'
+import StudentTab from './Student/StudentTab'
 import Loader from './Loader'
 
 function App() {
   const [students, setStudents] = React.useState([])
   const [statuses, setStatuses] = React.useState([])
   const [loading, setLoading] = React.useState(true)
+
+  const statusTypes = [
+    {title: `True`, studentActive: true},
+    {title: `False`, studentActive: false},
+  ]
 
 useEffect(() => {
   fetch('https://my-json-server.typicode.com/paraplancrm/api/students')
@@ -28,12 +33,13 @@ useEffect(() => {
       <div className='wrapper'>
         <h1>Students</h1>
 
-        { loading && <Loader />}
+        {/* { loading && <Loader />} */}
         
-        {students.length ? (<StudentList students={students} statuses={statuses}/> 
+        <StudentTab statusTypes={statusTypes} students={students} statuses={statuses} />
+        {/* {students.length ? (<StudentList students={students} statuses={statuses}/> 
         ) : (
           loading ? null : <p>No Student</p>
-        )}
+        )} */}
         
         
     </div>

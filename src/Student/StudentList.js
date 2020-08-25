@@ -14,8 +14,9 @@ function StudentList(props){
     return(
         <ul style={styles.ul}>
             {props.students.map((student, index)=> {
-                return <StudentItem student={student} statuses={props.statuses} key = {index} />
+                return <StudentItem student={student} statuses={props.statuses} statusType = {props.statusType} key = {index} />
             })}
+                     
         </ul>
     )
 }

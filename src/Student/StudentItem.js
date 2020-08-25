@@ -17,30 +17,33 @@ const styles = {
 }
 
 function StudentItem(props){
-     
+     return(
+    props.statuses.map( status => {
+        if (status.id===props.student.status){
+            if (status.active === props.statusType){
+                return <StudentActive student={props.student.name} status={String(status.active)}/>
+            }
+            return null
+        }
+    })
+     )
+}
 
+function StudentActive(props){
     return(
-    <li style={styles.li}>
-      
-        {props.student.name}
-            {props.statuses.map(status => {
-                if (status.id===props.student.status){
-                    console.log(status.active)
-                    return <p>{String(status.active)}</p>
-                }
-            })}
-        
-            
-           
+        <li style={styles.li}>
 
-    </li>
+        {props.student}
+        <p>{props.status}</p>
+
+        </li>
     )
 }
 
+
 StudentItem.propTypes = {
     student: PropTypes.object.isRequired,
-    statuses: PropTypes.arrayOf(PropTypes.object).isRequired
-    // status: PropTypes.object.isRequired,
+    statuses: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 export default StudentItem
